@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      position: relative;
+      text-align: center;
+      padding: 60px 20px;
+      background: #222;
+      color: white;
+    }
+
+    .language-select {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    select {
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      background: #ccc;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2em;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      height: 200px;
+    }
+
+    .contact p {
+      margin: 8px 0;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="language-select">
+    <select id="languageSwitcher">
+      <option value="sr">SR</option>
+      <option value="en">EN</option>
+    </select>
+  </div>
+
+  <div class="logo"></div>
+  <h1 id="welcome"></h1>
+</header>
+
+<section>
+  <h2 id="aboutTitle"></h2>
+  <p id="aboutText"></p>
+</section>
+
+<section>
+  <h2 id="menuTitle"></h2>
+  <table id="menuTable"></table>
+</section>
+
+<section>
+  <h2 id="galleryTitle"></h2>
+  <div class="gallery">
+    <img src="images/image1.png" alt="">
+    <img src="images/image2.png" alt="">
+    <img src="images/image3.png" alt="">
+    <img src="images/image4.png" alt="">
+    <img src="images/image5.png" alt="">
+    <img src="images/image6.png" alt="">
+  </div>
+</section>
+
+<section class="contact">
+  <h2 id="contactTitle"></h2>
+  <p id="contactEmail"></p>
+  <p id="contactPhone"></p>
+  <p id="contactAddress"></p>
+</section>
+
+<script>
+  const translations = {
+    sr: {
+      welcome: "Dobrodošli",
+      aboutTitle: "O NAMA",
+      aboutText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      menuTitle: "MENI",
+      galleryTitle: "GALERIJA",
+      contactTitle: "KONTAKT",
+      contactEmail: "Email: restoran@email.com",
+      contactPhone: "Telefon: +381 60 123 456",
+      contactAddress: "Adresa: Glavna 12, Pančevo",
+      menu: [
+        { name: "Jelo 1", price: "500 RSD" },
+        { name: "Jelo 2", price: "700 RSD" }
+      ]
+    },
+    en: {
+      welcome: "Welcome",
+      aboutTitle: "ABOUT US",
+      aboutText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      menuTitle: "MENU",
+      galleryTitle: "GALLERY",
+      contactTitle: "CONTACT",
+      contactEmail: "Email: restaurant@email.com",
+      contactPhone: "Phone: +381 60 123 456",
+      contactAddress: "Address: Main St 12, Pancevo",
+      menu: [
+        { name: "Dish 1", price: "$5" },
+        { name: "Dish 2", price: "$7" }
+      ]
+    }
+  };
+
+  function setLanguage(lang) {
+    const t = translations[lang];
+
+    document.getElementById("welcome").textContent = t.welcome;
+    document.getElementById("aboutTitle").textContent = t.aboutTitle;
+    document.getElementById("aboutText").textContent = t.aboutText;
+    document.getElementById("menuTitle").textContent = t.menuTitle;
+    document.getElementById("galleryTitle").textContent = t.galleryTitle;
+
+    document.getElementById("contactTitle").textContent = t.contactTitle;
+    document.getElementById("contactEmail").textContent = t.contactEmail;
+    document.getElementById("contactPhone").textContent = t.contactPhone;
+    document.getElementById("contactAddress").textContent = t.contactAddress;
+
+    const table = document.getElementById("menuTable");
+    table.innerHTML = "";
+    t.menu.forEach(item => {
+      const row = `<tr><td>${item.name}</td><td>${item.price}</td></tr>`;
+      table.innerHTML += row;
+    });
+  }
+
+  document.getElementById("languageSwitcher").addEventListener("change", (e) => {
+    setLanguage(e.target.value);
+  });
+
+  // Default language
+  setLanguage("sr");
+</script>
+
+</body>
+</html>
