@@ -1,10 +1,41 @@
 <!DOCTYPE html>
+
 <html lang="sr">
 <head>
   <meta name="google-site-verification" content="dUOD-pp_SaJQGCgfRDkPFi0vlOjyjx_o4m9xF8EHuYo" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restoran Novi Sad | Jovan Zubovic</title>
+
+  <title>Restaurant Name | Traditional Cuisine in Pančevo</title>
+
+<meta name="description"
+     content="Traditional Serbian cuisine, grilled specialties, homemade meals and a pleasant atmosphere in Pančevo.">
+
+<meta name="keywords"
+     content="restaurant, Pančevo, Serbian cuisine, grill, lunch, dinner, food">
+
+  <link rel="canonical" href="https://jovanzubovic.github.io/restoran.github.io/">
+
+  <meta property="og:title" content="Restaurant Name">
+  <meta property="og:description" content="Traditional Serbian cuisine and grilled specialties.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jovanzubovic.github.io/restoran.github.io/">
+  <meta property="og:image" content="https://jovanzubovic.github.io/restoran.github.io/images/image1.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Restaurant Name",
+    "telephone": "+38160123456",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Main Street 12",
+      "addressLocality": "Pančevo",
+      "addressCountry": "RS"
+    }
+  }
+  </script>
 
   <style>
     body {
@@ -88,7 +119,9 @@
       font-size: 1.1em;
     }
   </style>
+
 </head>
+
 <body>
 
 <header>
@@ -115,14 +148,7 @@
 
 <section>
   <h2 id="galleryTitle"></h2>
-  <div class="gallery">
-    <img src="images/image1.png" alt="">
-    <img src="images/image2.png" alt="">
-    <img src="images/image3.png" alt="">
-    <img src="images/image4.png" alt="">
-    <img src="images/image5.png" alt="">
-    <img src="images/image6.png" alt="">
-  </div>
+  <div class="gallery" id="gallery"></div>
 </section>
 
 <section class="contact">
@@ -136,32 +162,49 @@
   const translations = {
     sr: {
       welcome: "Dobrodošli",
+
       aboutTitle: "O NAMA",
-      aboutText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+
+      aboutText:
+        "Naš restoran nudi tradicionalnu srpsku kuhinju, specijalitete sa roštilja, domaća jela i prijatan ambijent za porodične ručkove, proslave i poslovne sastanke.",
+
       menuTitle: "MENI",
       galleryTitle: "GALERIJA",
+
       contactTitle: "KONTAKT",
       contactEmail: "Email: restoran@email.com",
       contactPhone: "Telefon: +381 60 123 456",
       contactAddress: "Adresa: Glavna 12, Pančevo",
+
       menu: [
-        { name: "Jelo 1", price: "500 RSD" },
-        { name: "Jelo 2", price: "700 RSD" }
+        { name: "Ćevapi", price: "800 RSD" },
+        { name: "Pljeskavica", price: "900 RSD" },
+        { name: "Pileći file", price: "950 RSD" },
+        { name: "Šopska salata", price: "350 RSD" }
       ]
     },
+
     en: {
       welcome: "Welcome",
+
       aboutTitle: "ABOUT US",
-      aboutText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+
+      aboutText:
+        "Our restaurant offers traditional Serbian cuisine, grilled specialties, homemade meals and a pleasant atmosphere for family lunches, celebrations and business gatherings.",
+
       menuTitle: "MENU",
       galleryTitle: "GALLERY",
+
       contactTitle: "CONTACT",
       contactEmail: "Email: restaurant@email.com",
       contactPhone: "Phone: +381 60 123 456",
-      contactAddress: "Address: Main St 12, Pancevo",
+      contactAddress: "Address: Main Street 12, Pancevo",
+
       menu: [
-        { name: "Dish 1", price: "$5" },
-        { name: "Dish 2", price: "$7" }
+        { name: "Ćevapi", price: "€7" },
+        { name: "Burger Steak", price: "€8" },
+        { name: "Chicken Fillet", price: "€8" },
+        { name: "Shopska Salad", price: "€3" }
       ]
     }
   };
@@ -182,18 +225,39 @@
 
     const table = document.getElementById("menuTable");
     table.innerHTML = "";
+
     t.menu.forEach(item => {
-      const row = `<tr><td>${item.name}</td><td>${item.price}</td></tr>`;
+      const row =
+        `<tr>
+          <td>${item.name}</td>
+          <td>${item.price}</td>
+        </tr>`;
+
       table.innerHTML += row;
     });
   }
 
-  document.getElementById("languageSwitcher").addEventListener("change", (e) => {
-    setLanguage(e.target.value);
-  });
+  function loadGallery() {
+    const gallery = document.getElementById("gallery");
 
-  // Default language
+    for (let i = 1; i <= 50; i++) {
+        const img = document.createElement("img");
+
+        img.src = `images/image${i}.png`;
+        img.alt = `Restaurant photo ${i}`;
+
+        gallery.appendChild(img);
+    }
+}
+
+  document
+    .getElementById("languageSwitcher")
+    .addEventListener("change", (e) => {
+      setLanguage(e.target.value);
+    });
+
   setLanguage("sr");
+  loadGallery();
 </script>
 
 </body>
