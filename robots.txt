@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jovanzubovic.github.io/restoran.github.io/sitemap.xml
